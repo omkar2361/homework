@@ -39,13 +39,19 @@ class Account extends Model
         $this->belongsTo(AccountCategory::class);
     }
 
-    public static function validationRules()
+    public static function validationRules($id = null)
     {
+        if (!is_null($id)) {
+            $ignore = ",$id";
+        } else {
+            $ignore = "";
+        }
+
         return [
             "account_category_id" => ["required", "integer", "exists:account_categories,id"],
             "parent_id" => ["integer", "exists:account_categories,id", Rule::requiredIf(request()->is_sub_account === true)],
             "tax_id" => ["integer"],
-            "name" => ["required"],
+            "name" => ["required", "unique:accounts,name" . "$ignore"],
             "is_sub_account" => ["boolean"],
         ];
     }
