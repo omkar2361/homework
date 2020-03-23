@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('account', 'AccountController');
 Route::resource('account-category', 'AccountCategoryController');
+Route::resource('transaction', 'TransactionController');
