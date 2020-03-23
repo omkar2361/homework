@@ -27,6 +27,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('tax_id')->nullable();
             $table->foreign('tax_id')->references('id')->on('taxes');
+            $table->boolean('is_reviewed')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

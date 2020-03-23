@@ -9,7 +9,7 @@ class AccountCategoryController extends Controller
 {
     public function index()
     {
-        return Account::all();
+        return AccountCategory::all();
     }
 
     public function show($id)

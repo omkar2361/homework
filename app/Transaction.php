@@ -21,6 +21,7 @@ class Transaction extends Model
         "vendor_id",
         "customer_id",
         "tax_id",
+        "is_reviewed",
     ];
 
     protected $casts = [
@@ -34,6 +35,7 @@ class Transaction extends Model
         "vendor_id" => "integer",
         "customer_id" => "integer",
         "tax_id" => "integer",
+        "is_reviewed" => "boolean",
     ];
 
     //Relationship
@@ -59,6 +61,7 @@ class Transaction extends Model
             "vendor_id" => ["integer"],
             "customer_id" => ["integer"],
             "tax_id" => ["exists:taxes,id", "integer"],
+            "is_reviewed" => ["boolean"],
         ];
     }
     //Store
