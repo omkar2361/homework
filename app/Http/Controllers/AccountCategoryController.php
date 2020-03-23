@@ -28,12 +28,12 @@ class AccountCategoryController extends Controller
     public function update(Request $request, $id)
     {
         //Get Record
-        $account = AccountCategory::findOrFail($id);
+        $account_catgegory = AccountCategory::findOrFail($id);
 
         //Validate
-        $this->validateData($request->all(), AccountCategory::validationRules());
+        $this->validateData($request->all(), AccountCategory::validationRules($account_catgegory->id));
 
-        $account->updateAccount($request);
+        $account_catgegory->updateAccountCategory($request);
 
     }
 

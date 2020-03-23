@@ -30,14 +30,23 @@ class AccountCategory extends Model
     ];
 
     //Validation rules
-    public static function validationRules()
+    public static function validationRules($id = null)
     {
-        return [
+        if (!is_null($id)) {
+            $ignore = ",$id";
+        } else {
+            $ignore = "";
+        }
+
+        $rules = [
             "parent_id" => ["sometimes", "nullable", "exists:account_categories,id"],
-            "name" => ["required"],
+            "name" => ["required", "unique:account_categories,name" . "$ignore"],
         ];
+
+        return $rules;
     }
 
+    //Store
     public static function store($request, $account_category = null)
     {
         if (is_null($account_category)) {
@@ -45,5 +54,12 @@ class AccountCategory extends Model
         }
 
         $account_category->fill($request->all())->save();
+
+    }
+
+    //Update account category
+    public function updateAccountCategory($request)
+    {
+        self::store($request, $this);
     }
 }
