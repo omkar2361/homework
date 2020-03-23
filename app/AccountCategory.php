@@ -33,7 +33,7 @@ class AccountCategory extends Model
     public static function validationRules()
     {
         return [
-            "parent_id" => ["sometimes", "exists:account_categories,id"],
+            "parent_id" => ["sometimes", "nullable", "exists:account_categories,id"],
             "name" => ["required"],
         ];
     }
