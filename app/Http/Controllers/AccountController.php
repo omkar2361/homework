@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use App\Model\Account;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -19,8 +19,6 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-        //Validate data
-        $this->validateData($request->all(), Account::validationRules());
 
         Account::store($request);
     }
@@ -29,9 +27,6 @@ class AccountController extends Controller
     {
         //Get Record
         $account = Account::findOrFail($id);
-
-        //Validate
-        $this->validateData($request->all(), Account::validationRules());
 
         $account->updateAccount($request);
 

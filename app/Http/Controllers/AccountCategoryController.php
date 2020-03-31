@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AccountCategory;
+use App\Model\AccountCategory;
 use Illuminate\Http\Request;
 
 class AccountCategoryController extends Controller
@@ -19,9 +19,6 @@ class AccountCategoryController extends Controller
 
     public function store(Request $request)
     {
-        //Validate data
-        $this->validateData($request->all(), AccountCategory::validationRules());
-
         AccountCategory::store($request);
     }
 
@@ -29,9 +26,6 @@ class AccountCategoryController extends Controller
     {
         //Get Record
         $account_catgegory = AccountCategory::findOrFail($id);
-
-        //Validate
-        $this->validateData($request->all(), AccountCategory::validationRules($account_catgegory->id));
 
         $account_catgegory->updateAccountCategory($request);
 

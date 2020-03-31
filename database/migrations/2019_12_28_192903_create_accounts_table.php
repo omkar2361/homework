@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAccountsTable extends Migration
 {
@@ -17,22 +17,23 @@ class CreateAccountsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('tenant_id')->nullable();
             $table->foreign('tenant_id')->references('id')->on('tenants');
-            $table->unsignedBigInteger('account_category_id')->nullable();
-            $table->foreign('account_category_id')->references('id')->on('account_categories')->onDelete('cascade');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->foreign('parent_id')->references('id')->on('accounts')->onDelete('cascade');
-            $table->unsignedBigInteger('tax_id')->nullable();
-            $table->foreign('tax_id')->references('id')->on('taxes')->onDelete('cascade');
+            $table->integer('account_category_id')->unsigned();
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->double('balance')->nullable();
-            $table->date('balance_as_of')->nullable();
-            $table->double('unpaid_balance')->nullable();
-            $table->date('unpaid_balance_as_of')->nullable();
             $table->boolean('is_sub_account')->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
-            $table->unique(['name', 'account_category_id']);
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->date('unpaid_balance_date')->nullable();
+            $table->double('unpaid_balance')->nullable();
+            $table->string('description')->nullable();
+            $table->enum('account_type', ['Carry Forward', 'Not Carry Forward', 'Other'])->nullable();
+            $table->enum('account_sub_type', ['Carry Forward', 'Not Carry Forward', 'Other'])->nullable();
+            $table->string('account_number')->nullable();
+            $table->double('current_balance')->nullable();
+            $table->date('current_balance_date')->nullable();
+            $table->integer('tax_id')->unsigned()->nullable(); //Remove nullable
+            $table->foreign('tax_id')->references('id')->on('taxes');
+            $table->enum('type', ['Report', 'Register'])->nullable();
+            $table->unique(['tenant_id', 'name']);
+            $table->timestamps();
             $table->softDeletes();
         });
     }

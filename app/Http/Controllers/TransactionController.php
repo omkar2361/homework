@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Transaction;
+use App\Model\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -19,9 +19,6 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        //Validate
-        $this->validateData($request->all(), Transaction::validationRules());
-
         //Store
         Transaction::store($request);
     }
@@ -29,9 +26,6 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         $transaction = Transaction::findOrFail($id);
-
-        //Validate
-        $this->validateData($request->all(), Transaction::validationRules());
 
         $transaction->updateTransaction($request);
     }

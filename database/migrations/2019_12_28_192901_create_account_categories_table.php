@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAccountCategoriesTable extends Migration
 {
@@ -15,19 +15,23 @@ class CreateAccountCategoriesTable extends Migration
     {
         Schema::create('account_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->foreign('parent_id')->references('id')->on('account_categories')->onDelete('cascade');
-            $table->string('name');
-            $table->unique(['name', 'parent_id']);
+            $table->unsignedBigInteger('tenant_id')->nullable();
+            $table->foreign('tenant_id')->references('id')->on('tenants');
+            $table->string('display_name');
+            $table->boolean('is_sub_category')->default(0);
+            $table->unsignedBigInteger('parent_id')->unsigned()->nullable();
             $table->text('description')->nullable();
-            $table->boolean('is_balance_required')->default(false);
-            $table->boolean('is_balance_date_required')->default(false);
             $table->boolean('is_unpaid_balance_required')->default(false);
             $table->boolean('is_unpaid_balance_date_required')->default(false);
-            $table->boolean('create_account')->default(false);
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->boolean('is_current_balance_required')->default(false);
+            $table->boolean('is_current_balance_date_required')->default(false);
+            $table->unique(['tenant_id', 'display_name']);
             $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::table('account_categories', function (Blueprint $table) {
+            $table->foreign('parent_id')->references('id')->on('account_categories');
         });
     }
 

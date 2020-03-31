@@ -15,21 +15,26 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->text('description');
-            $table->unsignedBigInteger('account_id');
-            $table->foreign('account_id')->references('id')->on('accounts');
-            $table->enum('deposite_or_withdrawal', ['Deposite', 'Withdrawal']);
-            $table->double('total_amount');
-            $table->date('transaction_date');
-            $table->string('category');
-            $table->text('notes')->nullable();
-            $table->unsignedBigInteger('vendor_id')->nullable();
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->unsignedBigInteger('tax_id')->nullable();
-            $table->foreign('tax_id')->references('id')->on('taxes');
-            $table->boolean('is_reviewed')->default(0);
-            $table->timestamps();
+            $table->unsignedBigInteger('tenant_id')->nullable();
+            $table->foreign('tenant_id')->references('id')->on('tenants');
+            $table->integer('customer_id')->unsigned()->nullable();
+            $table->integer('vendor_id')->unsigned()->nullable();
+            $table->integer('person_id')->unsigned()->nullable();
+            $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
+            $table->integer('account_id')->unsigned()->nullable();
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
+            $table->date('transaction_date')->nullable();
+            $table->string('doc_number')->nullable();
+            $table->string('type');
+            $table->enum('module', ['Sale', 'Expense']);
+            $table->date('due_date')->nullable();
+            $table->double('balance')->nullable();
+            $table->double('total_before_tax')->nullable();
+            $table->double('tax')->nullable();
+            $table->double('total')->nullable();
+            $table->string('status')->nullable();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

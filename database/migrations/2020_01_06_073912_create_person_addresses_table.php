@@ -15,19 +15,23 @@ class CreatePersonAddressesTable extends Migration
     {
         Schema::create('person_addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('tenant_id');
+            $table->unsignedBigInteger('tenant_id')->nullable();
             $table->foreign('tenant_id')->references('id')->on('tenants');
-            $table->unsignedBigInteger('person_id');
-            $table->foreign('person_id')->references('id')->on('people');
-            $table->text('street');
-            $table->string('city');
-            $table->string('state');
-            $table->string('country');
-            $table->string('pin_code');
-            $table->enum('type', ['Billing', 'Shipping']);
-            $table->boolean('is_same_as_billing_address')->default(0);
-            $table->timestamps();
+            $table->integer('person_id')->unsigned();
+            $table->enum('type', ['Primary', 'Billing', 'Shipping']);
+            $table->string('line_1')->nullable();
+            $table->string('line_2')->nullable();
+            $table->string('line_3')->nullable();
+            $table->string('line_4')->nullable();
+            $table->string('line_5')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('note')->nullable();
+            $table->boolean('is_same_as_billing')->nullable();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
