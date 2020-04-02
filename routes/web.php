@@ -1,8 +1,8 @@
 <?php
 
+use App\Model\Person;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +20,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('react', function () {
     return Inertia::render('Welcome', []);
 });
+Route::get('home', function () {
+    $persons = Person::all();
+    return Inertia::render('Home', [
+        'persons' => $persons,
+    ]);
+});
+Route::post('login', 'AuthenticateController@login');

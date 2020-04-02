@@ -15,6 +15,9 @@ export default function Layout({ title, children }) {
       </header>
 
       <article>{children}</article>
+
+      
     </main>
+   
   )
 }

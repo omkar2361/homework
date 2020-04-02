@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function loginValidationRules()
+    {
+        return [
+            'email' => ['required', 'exists:users,email'],
+            'password' => ['required'],
+        ];
+    }
 }

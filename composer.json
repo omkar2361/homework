@@ -23,6 +23,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "orangehill/iseed": "^2.6",
+        "troelskn/laravel-fillable-relations": "dev-master",
         "watson/validating": "^5.0"
     },
     "require-dev": {

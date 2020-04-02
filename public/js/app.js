@@ -31245,21 +31245,35 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./Home": [
+		"./resources/js/Pages/Home.js",
+		7,
+		2
+	],
+	"./Home.js": [
+		"./resources/js/Pages/Home.js",
+		7,
+		2
+	],
 	"./Layout": [
 		"./resources/js/Pages/Layout.js",
-		1
+		9,
+		0
 	],
 	"./Layout.js": [
 		"./resources/js/Pages/Layout.js",
-		1
+		9,
+		0
 	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.js",
-		0
+		9,
+		1
 	],
 	"./Welcome.js": [
 		"./resources/js/Pages/Welcome.js",
-		0
+		9,
+		1
 	]
 };
 function webpackAsyncContext(req) {
@@ -31272,8 +31286,8 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return __webpack_require__.e(ids[1]).then(function() {
-		return __webpack_require__(id);
+	return __webpack_require__.e(ids[2]).then(function() {
+		return __webpack_require__.t(id, ids[1])
 	});
 }
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
@@ -31332,8 +31346,8 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_2__["render"])( /*#__PURE__*/react__WE
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/omkar/Documents/office_work/laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/omkar/Documents/office_work/laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

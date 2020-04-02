@@ -3,22 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', 'AuthenticateController@login');
-// Route::post('login', function (Request $request) {
-//     $request->validate([
-//         'email' => 'required',
-//         'password' => 'required',
-//     ]);
-
-//     $user = User::where('email', $request->email)->first();
-
-//     if (!$user || !Hash::check($request->password, $user->password)) {
-//         return response()->json([
-//             'error' => "Invalid",
-//         ]);
-//     }
-
-//     return $user->createToken('my-token')->plainTextToken;
-// });
 
 Route::group(['middleware' => ['tenant']], function () {
     //Account routes

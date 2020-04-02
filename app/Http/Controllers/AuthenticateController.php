@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class AuthenticateController extends Controller
     public function login(Request $request)
     {
         //Validation
-        // $this->validateData($request->all(), User::loginValidationRules());
+        $this->validateData($request->all(), User::loginValidationRules());
 
         try {
             // Attempt to verify the credentials
@@ -24,12 +25,11 @@ class AuthenticateController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        //Store token in user tokens table
-
         //Get user
         $user = Auth::user();
         $user->createToken('token');
 
+        return redirect('/home')->with('user', $user);
     }
 
     public function logout(Request $request)

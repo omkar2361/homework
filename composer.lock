@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e80f47d269f42f74f8474e72cd65b23",
+    "content-hash": "7899f0b815a58b2bc7791967235f2de4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4382,6 +4382,48 @@
             "time": "2019-10-24T08:53:34+00:00"
         },
         {
+            "name": "troelskn/laravel-fillable-relations",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/troelskn/laravel-fillable-relations.git",
+                "reference": "7b60422865650052d013fad741a8aef9078b5a95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/troelskn/laravel-fillable-relations/zipball/7b60422865650052d013fad741a8aef9078b5a95",
+                "reference": "7b60422865650052d013fad741a8aef9078b5a95",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=5.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "orchestra/database": "3.3.1",
+                "orchestra/testbench": "3.3",
+                "phpunit/phpunit": "~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaravelFillableRelations\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Troels Knak-Nielsen",
+                    "email": "troelskn@gmail.com"
+                }
+            ],
+            "description": "Provides HasFillableRelations trait to Eloquent models",
+            "time": "2019-12-03T12:36:57+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v4.1.2",
             "source": {
@@ -6688,7 +6730,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "troelskn/laravel-fillable-relations": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
